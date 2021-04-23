@@ -44,7 +44,7 @@ export default function SearchTitle() {
         setValue('')
     }
     return (
-        <div>
+        <div data-testid="search-title">
             <Select
                 value={selected}
                 isClearable={true}

@@ -61,10 +61,12 @@ export default function FormDialog() {
 
     return (
         <div>
-            <Dialog open={isOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <Dialog open={isOpen} onClose={handleClose} aria-labelledby="form-dialog-title" data-testid="edit-dialog">
                 <DialogTitle id="form-dialog-title">Edit product details</DialogTitle>
                 <DialogContent>
-                    <label className={classes.label} htmlFor="title">Title</label>
+                    <label className={classes.label} htmlFor="title">
+                        Title
+                    </label>
                     <TextareaAutosize
                         aria-label="title"
                         id="title"

@@ -1,12 +1,8 @@
-import { useState } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
-import { useDispatch } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import Button from '@material-ui/core/Button'
-import SearchIcon from '@material-ui/icons/Search';
+
 import SearchTitle from './SearchTitle';
 
 
@@ -67,19 +63,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar() {
     const classes = useStyles();
-    const dispatch = useDispatch();
-
-    const [searchValue, setSearchValue] = useState('')
-    const handleSearch = (e) => {
-        e.preventDefault();
-        // console.log("searchValue: ", searchValue)
-    }
-    const handleInput = (e) => {
-        setSearchValue(e.target.value);
-    }
-
     return (
-        <div className="Navbar">
+        <div className="Navbar" data-testid="navbar">
             <AppBar position="fixed" className={classes.appbar}>
                 <Grid container spacing={3}>
                     <Grid item xs={6}>
@@ -89,23 +74,6 @@ export default function Navbar() {
                     </Grid>
                     <Grid item xs={6}>
                         <SearchTitle />
-                        {/* <form onSubmit={handleSearch} className={classes.form}>
-                            <div className={classes.search}>
-                                <InputBase
-                                    placeholder="Search…"
-                                    classes={{
-                                        root: classes.inputRoot,
-                                        input: classes.inputInput,
-                                    }}
-                                    inputProps={{ 'aria-label': 'search' }}
-                                    onChange={handleInput}
-                                    value={searchValue}
-                                />
-                            </div>
-                            <Button variant="contained" color="primary" type="submit">
-                                <SearchIcon />
-                            </Button>
-                        </form> */}
                     </Grid>
 
                 </Grid>

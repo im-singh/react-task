@@ -19,26 +19,30 @@ const useStyles = makeStyles((theme) => ({
         width: '70%',
         backgroundColor: '#424242',
         color: 'white'
+    },
+    error: {
+        textAlign: 'center',
+        color: 'red'
     }
 }));
 export default function DataList() {
     const classes = useStyles();
     const dispatch = useDispatch();
     const { products, isLoading, isError } = useSelector(({ productState }) => productState)
-    console.log('products: ', products)
+    // console.log('products: ', products)
 
     const showDialog = (ele) => {
         dispatch(openDialog(ele))
     }
     if (isError) {
-        return <p>Server error</p>
+        return <p className={classes.error}>Server error</p>
     }
     if (products.length > 0) {
         return (
-            <List className={classes.list}>
+            <List className={classes.list} data-testid="list">
                 {products.map((ele, idx) => {
                     return (
-                        <ListItem key={idx} button onClick={() => showDialog(ele)}>
+                        <ListItem key={idx} button onClick={() => showDialog(ele)} data-testid="list-item">
                             <ListItemText primary={`${idx + 1} ${ele.title}`} />
                         </ListItem>
                     )
@@ -46,6 +50,6 @@ export default function DataList() {
             </List>
         )
     }
-    return <CircularProgress className={classes.loader} />
+    return <CircularProgress className={classes.loader} data-testid="loader" />
 
 }

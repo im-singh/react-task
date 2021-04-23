@@ -8,7 +8,7 @@ import { fetchProductList } from '../../redux/Products/actions';
 
 export default function Home() {
     return (
-        <div className="home-page">
+        <div className="home-page" data-testid="home-page">
             <Navbar />
             <DataListContainer />
         </div>

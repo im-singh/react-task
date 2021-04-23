@@ -50,6 +50,7 @@ export default function SearchTitle() {
                 isClearable={true}
                 isSearchable={true}
                 onChange={handleChange}
+                placeholder={'Search title..'}
                 options={options}
                 styles={customStyle}
                 onFocus={handleFocus}

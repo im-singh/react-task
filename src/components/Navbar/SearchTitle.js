@@ -6,7 +6,7 @@ import { openDialog } from '../../redux/Dialog/actions';
 
 export default function SearchTitle() {
     const [selected, setValue] = useState();
-    const [options, setOptions] = useState();
+    const [options, setOptions] = useState([{ value: 'd', label: 'd' }]);
     const dispatch = useDispatch();
     const { products } = useSelector(({ productState }) => productState);
     const customStyle = {
@@ -15,7 +15,11 @@ export default function SearchTitle() {
             return {
                 ...styles, backgroundColor: '#dbdbdb', color: 'black',
                 ':active': {
-                    backgroundColor: 'blue',
+                    backgroundColor: '#3f51b5',
+                },
+                ':hover': {
+                    backgroundColor: '#3f51b5',
+                    color: 'white',
                 }
             }
         }
@@ -33,12 +37,12 @@ export default function SearchTitle() {
 
 
     const handleChange = (selectedOption, action) => {
-        console.log('acitons: ', action, selectedOption);
-        setValue(selectedOption);
-        let product = products.filter(ele => ele.id === selectedOption.id)[0];
-        console.log("pro: ", product)
-        dispatch(openDialog(product))
-
+        if (action.action === 'select-option') {
+            setValue(selectedOption);
+            let product = products.filter(ele => ele.id === selectedOption.id)[0];
+            // console.log("pro: ", product)
+            dispatch(openDialog(product))
+        }
     };
     const handleFocus = () => {
         setValue('')

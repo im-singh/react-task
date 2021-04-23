@@ -18,7 +18,10 @@ const useStyles = makeStyles((theme) => ({
         margin: 'auto',
         width: '70%',
         backgroundColor: '#424242',
-        color: 'white'
+        color: 'white',
+        [theme.breakpoints.down('sm')]: {
+            width: '95%',
+        }
     },
     error: {
         textAlign: 'center',

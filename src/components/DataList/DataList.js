@@ -30,6 +30,9 @@ export default function DataList() {
     const showDialog = (ele) => {
         dispatch(openDialog(ele))
     }
+    if (isError) {
+        return <p>Server error</p>
+    }
     if (products.length > 0) {
         return (
             <List className={classes.list}>

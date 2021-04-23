@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
         padding: '0px 24px',
         backgroundColor: '#333',
         overflow: 'auto',
-
     }
 }));
 export default function DataListContainer() {

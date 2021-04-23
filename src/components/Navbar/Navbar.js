@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button'
 import SearchIcon from '@material-ui/icons/Search';
+import SearchTitle from './SearchTitle';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -87,7 +88,8 @@ export default function Navbar() {
                         </Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <form onSubmit={handleSearch} className={classes.form}>
+                        <SearchTitle />
+                        {/* <form onSubmit={handleSearch} className={classes.form}>
                             <div className={classes.search}>
                                 <InputBase
                                     placeholder="Search…"
@@ -103,7 +105,7 @@ export default function Navbar() {
                             <Button variant="contained" color="primary" type="submit">
                                 <SearchIcon />
                             </Button>
-                        </form>
+                        </form> */}
                     </Grid>
 
                 </Grid>

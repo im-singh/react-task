@@ -1,64 +1,91 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Select from 'react-select';
+import { withStyles, fade, makeStyles } from '@material-ui/core/styles';
+
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import Button from '@material-ui/core/Button'
+import SearchIcon from '@material-ui/icons/Search';
 
 import { openDialog } from '../../redux/Dialog/actions';
+import { searchValue } from '../../redux/Products/actions';
+const useStyles = makeStyles((theme) => ({
+    form: {
+        display: "flex",
+        alignItems: "center"
+    },
+    searchBtn: {
+        marginLeft: '5px'
+    },
+    inputField: {
+        color: 'black'
+    },
+    inputRoot: {
+        backgroundColor: 'white',
+    },
+    searchIcon: {
+        padding: theme.spacing(0, 2),
+        height: '100%',
+        position: 'absolute',
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 
+}));
 export default function SearchTitle() {
-    const [selected, setValue] = useState();
-    const [options, setOptions] = useState([{ value: 'd', label: 'd' }]);
+    const classes = useStyles();
+    const [searchedValue, setValue] = useState();
+    const [options, setOptions] = useState([]);
     const dispatch = useDispatch();
     const { products } = useSelector(({ productState }) => productState);
-    const customStyle = {
-        control: styles => ({ ...styles, backgroundColor: 'white' }),
-        option: styles => {
-            return {
-                ...styles, backgroundColor: '#dbdbdb', color: 'black',
-                ':active': {
-                    backgroundColor: '#3f51b5',
-                },
-                ':hover': {
-                    backgroundColor: '#3f51b5',
-                    color: 'white',
-                }
-            }
-        }
 
-    }
     useEffect(() => {
         if (products.length > 0) {
-            let options = products.map(ele => {
-                let obj = { value: ele.title, label: ele.title, id: ele.id };
-                return obj;
-            });
-            setOptions(options);
+            setOptions(products);
         }
     }, [products])
 
 
-    const handleChange = (selectedOption, action) => {
-        if (action.action === 'select-option') {
-            setValue(selectedOption);
-            let product = products.filter(ele => ele.id === selectedOption.id)[0];
-            // console.log("pro: ", product)
+    const handleChange = (event, value, reason) => {
+        // console.log("s: ", searchedValueOption, value)
+        if (reason === 'select-option') {
+            setValue(value);
+            let product = products.filter(ele => ele.id === value.id)[0];
             dispatch(openDialog(product))
         }
     };
-    const handleFocus = () => {
-        setValue('')
+    const handleInput = (event, value) => {
+        console.log("input: ", value);
+        setValue(value)
     }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(searchValue(searchedValue));
+    }
+
     return (
-        <div data-testid="search-title">
-            <Select
-                value={selected}
-                isClearable={true}
-                isSearchable={true}
-                onChange={handleChange}
-                placeholder={'Search title..'}
-                options={options}
-                styles={customStyle}
-                onFocus={handleFocus}
-            />
+        <div data-testid="search-title" >
+            <form onSubmit={handleSubmit} className={classes.form}>
+                <Autocomplete
+                    id="search-title"
+                    options={options}
+                    classes={{ input: classes.inputField, inputRoot: classes.inputRoot }}
+                    getOptionLabel={(option) => option.title}
+                    onChange={handleChange}
+                    onInputChange={handleInput}
+                    value={searchedValue}
+                    autoComplete={true}
+                    size="small"
+                    style={{ width: 300, display: 'inline-block' }}
+                    renderInput={(params) => <TextField {...params} label="Search Title" variant="outlined" />}
+                />
+                <Button variant="contained" className={classes.searchBtn} color="primary" type="submit">
+                    <SearchIcon />
+                </Button>
+            </form>
+
         </div>
 
     )

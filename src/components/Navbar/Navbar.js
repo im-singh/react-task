@@ -69,7 +69,7 @@ export default function Navbar() {
                 <Grid container spacing={3}>
                     <Grid item xs={6}>
                         <Typography component="h1" className={classes.title}>
-                            JSON Data
+                            Product Details
                         </Typography>
                     </Grid>
                     <Grid item xs={6}>

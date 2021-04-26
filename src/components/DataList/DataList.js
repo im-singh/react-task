@@ -32,7 +32,6 @@ export default function DataList() {
     const classes = useStyles();
     const dispatch = useDispatch();
     const { products, isLoading, isError } = useSelector(({ productState }) => productState)
-    // console.log('products: ', products)
 
     const showDialog = (ele) => {
         dispatch(openDialog(ele))

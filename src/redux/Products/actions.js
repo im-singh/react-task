@@ -11,3 +11,9 @@ export const updateProduct = (payload) => {
         payload,
     }
 }
+export const searchValue = (payload) => {
+    return {
+        type: productTypes.UPDATE_SEARCH_VALUE,
+        payload
+    }
+}

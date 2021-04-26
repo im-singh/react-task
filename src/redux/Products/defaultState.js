@@ -3,5 +3,6 @@ export const productState = {
     isLoading: false,
     isError: false,
     error: '',
+    searchedValue: ''
 
 }

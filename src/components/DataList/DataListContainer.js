@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
 import DataList from './DataList';
-import EditDialog from '../HomePage/EditDialog';
+// import EditDialog from '../HomePage/EditDialog';
 import { fetchProductList } from '../../redux/Products/actions';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +27,7 @@ export default function DataListContainer() {
     }, [])
     return (
         <div className={classes.listContainer}>
-            <EditDialog />
+            {/* <EditDialog /> */}
             <DataList />
         </div>
 

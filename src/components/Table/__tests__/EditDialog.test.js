@@ -2,7 +2,7 @@ import { render, screen, fireEvent, cleanup, waitForElementToBeRemoved } from '.
 import configureStore from 'redux-mock-store';
 
 import EditDialog from '../EditDialog';
-import productTypes from '../../../redux/Products/types'
+import productTypes from '../../../redux/Products/types';
 let mockState = {
     dialogState: {
         isOpen: true,
@@ -84,12 +84,12 @@ describe("<EditDialog/> component with redux statea", () => {
         render(<EditDialog />, { store });
         let titleField = screen.getByLabelText("title");
         let desField = screen.getByLabelText("description");
-        fireEvent.change(titleField, { target: { value: 'title changed' } });
-        fireEvent.change(desField, { target: { value: 'des changed' } });
-
+        let tempObj = { id: 3, title: 'title changed', description: 'des changed' }
+        fireEvent.change(titleField, { target: { value: tempObj.title } });
+        fireEvent.change(desField, { target: { value: tempObj.description } });
         let submitBtn = screen.getByRole('button', { name: /submit/i });
         fireEvent.click(submitBtn);
-        expect(store.dispatch).toHaveBeenNthCalledWith(1, { type: })
+        expect(store.dispatch).toHaveBeenNthCalledWith(1, { type: productTypes.UPDATE_PRODUCT, payload: tempObj })
     })
 
 

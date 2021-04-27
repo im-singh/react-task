@@ -10,9 +10,15 @@ import SearchIcon from '@material-ui/icons/Search';
 import { openDialog } from '../../redux/Dialog/actions';
 import { searchValue } from '../../redux/Products/actions';
 const useStyles = makeStyles((theme) => ({
+    formContainer: {
+        display: 'flex',
+        justifyContent: 'center'
+    },
     form: {
         display: "flex",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: 'white',
+        maxWidth: '300px'
     },
     searchBtn: {
         marginLeft: '5px'
@@ -68,7 +74,7 @@ export default function SearchTitle() {
     }
 
     return (
-        <div data-testid="search-title" >
+        <div data-testid="search-title" className={classes.formContainer} >
             <form onSubmit={handleSubmit} className={classes.form}>
                 <Autocomplete
                     id="search-title"
@@ -80,12 +86,12 @@ export default function SearchTitle() {
                     inputValue={searchedValue}
                     size="small"
                     style={{ width: 300, display: 'inline-block' }}
-                    renderInput={(params) => <TextField {...params} label="Search Title" variant="outlined" />}
+                    renderInput={(params) => <TextField {...params} label="Search Title" variant="filled" />}
                 />
-                <Button variant="contained" data-testid="search-btn" className={classes.searchBtn} color="primary" type="submit">
-                    <SearchIcon />
-                </Button>
             </form>
+            <Button variant="contained" data-testid="search-btn" className={classes.searchBtn} color="primary" type="submit">
+                <SearchIcon />
+            </Button>
 
         </div>
 

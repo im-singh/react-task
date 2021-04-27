@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { matchSorter } from 'match-sorter'
-
 import TableView from './TableView';
 import EditDialog from './EditDialog';
 import { openDialog } from '../../redux/Dialog/actions';
@@ -14,7 +12,8 @@ const useStyles = makeStyles({
     tableContainer: {
         width: '90%',
         margin: 'auto',
-        marginTop: '65px',
+        marginTop: '100px',
+        cursor: "default"
     },
     loader: {
         position: 'absolute',
@@ -63,12 +62,21 @@ export default function TableContainer() {
     // }
     const handleSearch = () => {
         if (searchedValue.length > 0) {
-            const rows = matchSorter(products, searchedValue, { keys: ['title'] })
+            const rows = filterRows(products, searchedValue)
             setTableRows(rows);
         }
         else {
             setTableRows(products);
         }
+    }
+    const filterRows = (arr, value) => {
+        return arr.filter(ele => {
+            let rg = new RegExp(`${value}`, 'i');
+            if (ele.title.match(rg)) {
+                return true
+            }
+            return false;
+        })
     }
     const showDialog = (ele) => {
         dispatch(openDialog(ele))

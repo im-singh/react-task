@@ -46,14 +46,12 @@ describe('<TableContainer/> component with state', () => {
                 { title: "title 1", body: "des1" },
                 { title: "this is me", body: 'des 2' },
                 { title: "this m is e", body: 'des 2' },
-
             ],
             searchedValue: "me"
         }
-        const matchedRows = matchSorter(productState.products, 'me', { keys: ['title'] })
         let { container } = render(<TableContainer />, { initialState: { productState } });
         let rows = screen.getAllByTestId("table-row");
-        expect(rows.length).toBe(matchedRows.length);
+        expect(rows.length).toBe(1);
     });
 
 })

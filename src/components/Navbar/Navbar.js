@@ -67,12 +67,12 @@ export default function Navbar() {
         <div className="Navbar" data-testid="navbar">
             <AppBar position="fixed" className={classes.appbar}>
                 <Grid container spacing={3}>
-                    <Grid item xs={6}>
+                    <Grid item xs={4} sm={6}>
                         <Typography component="h1" className={classes.title}>
                             Product Details
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={8} sm={6}>
                         <SearchTitle />
                     </Grid>
 

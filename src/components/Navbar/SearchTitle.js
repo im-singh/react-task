@@ -28,6 +28,14 @@ const useStyles = makeStyles((theme) => ({
     },
     inputRoot: {
         backgroundColor: 'white',
+
+    },
+    root: {
+        width: '300px',
+        display: 'inline-block',
+        [theme.breakpoints.down('xs')]: {
+            width: '230px',
+        }
     },
     searchIcon: {
         padding: theme.spacing(0, 2),
@@ -55,7 +63,6 @@ export default function SearchTitle() {
 
 
     const handleChange = (event, value, reason) => {
-        // console.log("s: ", searchedValueOption, value)
         if (reason === 'select-option') {
             setValue(value.title);
             let product = products.filter(ele => ele.id === value.id)[0];
@@ -63,7 +70,6 @@ export default function SearchTitle() {
         }
     };
     const handleInput = (event, value, reason) => {
-        console.log("input: ", value);
         if (reason === "input") {
             setValue(value)
         }
@@ -75,21 +81,20 @@ export default function SearchTitle() {
 
     return (
         <div data-testid="search-title" className={classes.formContainer} >
-            <form onSubmit={handleSubmit} className={classes.form}>
+            <form onSubmit={handleSubmit} className={classes.form} id="search-form">
                 <Autocomplete
                     id="search-title"
                     options={options}
-                    classes={{ input: classes.inputField, inputRoot: classes.inputRoot }}
+                    classes={{ input: classes.inputField, inputRoot: classes.inputRoot, root: classes.root }}
                     getOptionLabel={(option) => option.title}
                     onChange={handleChange}
                     onInputChange={handleInput}
                     inputValue={searchedValue}
                     size="small"
-                    style={{ width: 300, display: 'inline-block' }}
                     renderInput={(params) => <TextField {...params} label="Search Title" variant="filled" />}
                 />
             </form>
-            <Button variant="contained" data-testid="search-btn" className={classes.searchBtn} color="primary" type="submit">
+            <Button variant="contained" data-testid="search-btn" form="search-form" className={classes.searchBtn} color="primary" type="submit">
                 <SearchIcon />
             </Button>
 

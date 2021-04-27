@@ -8,6 +8,7 @@ import TableView from './TableView';
 import EditDialog from './EditDialog';
 import { openDialog } from '../../redux/Dialog/actions';
 import { Typography } from '@material-ui/core';
+import Error from './Error';
 
 const useStyles = makeStyles({
     tableContainer: {
@@ -28,7 +29,7 @@ export default function TableContainer() {
     const dispatch = useDispatch();
     const classes = useStyles();
     const [allRows, setAllRows] = useState([])
-    const { products, isLoading, searchedValue } = useSelector(({ productState }) => productState);
+    const { products, isLoading, searchedValue, isError } = useSelector(({ productState }) => productState);
     const [tableRows, setTableRows] = useState([]);
 
     const columns = React.useMemo(
@@ -75,14 +76,13 @@ export default function TableContainer() {
     return (
         <div className={classes.tableContainer}>
             <EditDialog />
-            <Typography align="center">
-                <strong>Search: </strong>{searchedValue}
-            </Typography>
-            <TableView
+            {isError && <Error />}
+            {!isError && !isLoading && <TableView
                 tableRows={tableRows}
                 tableColumns={columns}
                 showDialog={showDialog}
             />
+            }
             {isLoading && <CircularProgress className={classes.loader} data-testid="loader" />}
 
         </div>

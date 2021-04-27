@@ -16,7 +16,7 @@ export default function ProductReducer(state = productState, action) {
         case productTypes.UPDATE_PRODUCT:
             return { ...state, products: returnUpdatedProducts(state.products, action.payload) }
         case productTypes.UPDATE_SEARCH_VALUE:
-            { return { ...state, searchedValue: action.payload } }
+            return { ...state, searchedValue: action.payload }
         default:
             return state;
     }

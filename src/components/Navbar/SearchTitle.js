@@ -56,9 +56,11 @@ export default function SearchTitle() {
             dispatch(openDialog(product))
         }
     };
-    const handleInput = (event, value) => {
+    const handleInput = (event, value, reason) => {
         console.log("input: ", value);
-        setValue(value)
+        if (reason === "input") {
+            setValue(value)
+        }
     }
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -75,13 +77,12 @@ export default function SearchTitle() {
                     getOptionLabel={(option) => option.title}
                     onChange={handleChange}
                     onInputChange={handleInput}
-                    value={searchedValue}
-                    autoComplete={true}
+                    inputValue={searchedValue}
                     size="small"
                     style={{ width: 300, display: 'inline-block' }}
                     renderInput={(params) => <TextField {...params} label="Search Title" variant="outlined" />}
                 />
-                <Button variant="contained" className={classes.searchBtn} color="primary" type="submit">
+                <Button variant="contained" data-testid="search-btn" className={classes.searchBtn} color="primary" type="submit">
                     <SearchIcon />
                 </Button>
             </form>

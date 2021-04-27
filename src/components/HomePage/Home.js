@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Navbar from '../Navbar/Navbar';
-import DataListContainer from '../DataList/DataListContainer';
 import { fetchProductList } from '../../redux/Products/actions';
 import TableContainer from '../Table/TableContainer';
 

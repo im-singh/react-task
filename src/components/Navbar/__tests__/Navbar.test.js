@@ -6,6 +6,10 @@ describe("<Navbar/> component", () => {
         let { container } = render(<Navbar />);
         expect(screen.getByTestId("navbar")).toBeInTheDocument();
     })
+    test('should render h1 title', () => {
+        let { container } = render(<Navbar />);
+        expect(container.querySelector("h1")).toBeInTheDocument();
+    })
     test('should render <SearchTitle/>', () => {
         render(<Navbar />);
         expect(screen.getByTestId("search-title")).toBeInTheDocument();

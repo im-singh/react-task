@@ -77,14 +77,14 @@ export default function TableContainer() {
         <div className={classes.tableContainer}>
             <EditDialog />
             {isError && <Error />}
-            {!isError && !isLoading && <TableView
-                tableRows={tableRows}
-                tableColumns={columns}
-                showDialog={showDialog}
-            />
+            {!isError && !isLoading &&
+                <TableView
+                    tableRows={tableRows}
+                    tableColumns={columns}
+                    showDialog={showDialog}
+                />
             }
             {isLoading && <CircularProgress className={classes.loader} data-testid="loader" />}
-
         </div>
     )
 }

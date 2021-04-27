@@ -39,7 +39,7 @@ export default function TableView({ tableRows, showDialog }) {
     const classes = useStyles();
     return (
         <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="customized table">
+            <Table className={classes.table} aria-label="product-table">
                 <TableHead>
                     <TableRow>
                         <StyledTableCell className={classes.indexColumn}>Sr.no</StyledTableCell>
@@ -49,7 +49,7 @@ export default function TableView({ tableRows, showDialog }) {
                 </TableHead>
                 <TableBody>
                     {tableRows.map((row, idx) => (
-                        <StyledTableRow key={idx} onClick={() => showDialog(row)}>
+                        <StyledTableRow key={idx} onClick={() => showDialog(row)} data-testid="table-row">
                             <StyledTableCell align="center">{idx + 1}</StyledTableCell>
                             <StyledTableCell align="center">{row.title}</StyledTableCell>
                             <StyledTableCell align="center">{row.body}</StyledTableCell>

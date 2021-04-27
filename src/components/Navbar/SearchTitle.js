@@ -51,7 +51,7 @@ export default function SearchTitle() {
     const handleChange = (event, value, reason) => {
         // console.log("s: ", searchedValueOption, value)
         if (reason === 'select-option') {
-            setValue(value);
+            setValue(value.title);
             let product = products.filter(ele => ele.id === value.id)[0];
             dispatch(openDialog(product))
         }

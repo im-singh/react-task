@@ -3,7 +3,7 @@ const app = require("../../app");
 
 
 describe("GET /products/ ", () => {
-    test.only("should respond if wrong endpoint", async () => {
+    test("should respond if wrong endpoint", async () => {
         const response = await request(app).post("/prodcs/");
         expect(response.body).toMatch(/404 not found/i)
     })

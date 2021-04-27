@@ -8,26 +8,26 @@ import { openDialog } from '../../redux/Dialog/actions';
 import { Typography } from '@material-ui/core';
 import Error from './Error';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     tableContainer: {
         width: '90%',
         margin: 'auto',
         marginTop: '100px',
-        cursor: "default"
+        cursor: "default",
+        [theme.breakpoints.down("xs")]: {
+            marginTop: '70px',
+        }
     },
     loader: {
         position: 'absolute',
         top: 'calc(50% - 20px)',
         left: 'calc(50% - 20px)',
     },
-});
-
-
+}));
 
 export default function TableContainer() {
     const dispatch = useDispatch();
     const classes = useStyles();
-    const [allRows, setAllRows] = useState([])
     const { products, isLoading, searchedValue, isError } = useSelector(({ productState }) => productState);
     const [tableRows, setTableRows] = useState([]);
 
@@ -57,9 +57,7 @@ export default function TableContainer() {
     useEffect(() => {
         handleSearch();
     }, [searchedValue])
-    // const handleInputChange = (e) => {
-    //     setSearchValue(e.target.value);
-    // }
+
     const handleSearch = () => {
         if (searchedValue.length > 0) {
             const rows = filterRows(products, searchedValue)

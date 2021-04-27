@@ -91,6 +91,4 @@ describe("<EditDialog/> component with redux statea", () => {
         fireEvent.click(submitBtn);
         expect(store.dispatch).toHaveBeenNthCalledWith(1, { type: productTypes.UPDATE_PRODUCT, payload: tempObj })
     })
-
-
 })

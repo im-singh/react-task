@@ -15,8 +15,15 @@ const useStyles = makeStyles((theme) => ({
         paddingLeft: '1rem',
         fontWeight: 500,
         fontSize: '1.3rem',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '1rem',
+            paddingTop: '3px'
+        },
         [theme.breakpoints.up('sm')]: {
             fontSize: '1.5rem',
+            paddingLeft: '2rem'
+        },
+        [theme.breakpoints.up('md')]: {
             paddingLeft: '4rem'
         },
     },
@@ -67,12 +74,12 @@ export default function Navbar() {
         <div className="Navbar" data-testid="navbar">
             <AppBar position="fixed" className={classes.appbar}>
                 <Grid container spacing={3}>
-                    <Grid item xs={4} sm={6}>
+                    <Grid item xs={5} md={6}>
                         <Typography component="h1" className={classes.title}>
                             Product Details
                         </Typography>
                     </Grid>
-                    <Grid item xs={8} sm={6}>
+                    <Grid item xs={7} md={6}>
                         <SearchTitle />
                     </Grid>
 

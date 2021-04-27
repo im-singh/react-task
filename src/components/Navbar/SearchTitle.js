@@ -21,21 +21,44 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: '300px'
     },
     searchBtn: {
-        marginLeft: '5px'
+        marginLeft: '5px',
+        [theme.breakpoints.down('xs')]: {
+            minWidth: '40px',
+            padding: '3px',
+        },
     },
     inputField: {
         color: 'black'
     },
     inputRoot: {
         backgroundColor: 'white',
-
+    },
+    label: {
+        [theme.breakpoints.down('xs')]: {
+            display: 'none'
+        },
     },
     root: {
-        width: '300px',
         display: 'inline-block',
+
+        [theme.breakpoints.up('sm')]: {
+            width: '250px',
+        },
+        [theme.breakpoints.up('md')]: {
+            width: '320px',
+        },
         [theme.breakpoints.down('xs')]: {
-            width: '230px',
-        }
+            width: '200px',
+            "& label.MuiInputLabel-filled": {
+                transform: "translate(12px, 8px) scale(1)",
+            },
+            "& label.Mui-focused": {
+                display: 'none',
+            },
+            '& .MuiAutocomplete-inputRoot': {
+                paddingTop: '0px'
+            }
+        },
     },
     searchIcon: {
         padding: theme.spacing(0, 2),
@@ -45,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+
     },
 
 }));
@@ -85,7 +109,11 @@ export default function SearchTitle() {
                 <Autocomplete
                     id="search-title"
                     options={options}
-                    classes={{ input: classes.inputField, inputRoot: classes.inputRoot, root: classes.root }}
+                    classes={{
+                        input: classes.inputField,
+                        inputRoot: classes.inputRoot,
+                        root: classes.root,
+                    }}
                     getOptionLabel={(option) => option.title}
                     onChange={handleChange}
                     onInputChange={handleInput}

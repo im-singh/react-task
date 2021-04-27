@@ -11,7 +11,7 @@ describe('<TableView/> component', () => {
         expect(screen.getByLabelText("product-table")).toBeInTheDocument();
 
     })
-    test.only('should render header correctly', () => {
+    test('should render header correctly', () => {
         let { container } = render(<TableView tableRows={rows} />);
         let thead = container.querySelector("thead");
         expect(thead).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe('<TableView/> component', () => {
             expect(tRows[idx]).toHaveTextContent(product.title)
             expect(tRows[idx]).toHaveTextContent(product.body)
         })
-    test.only("shoud invoke show dialog", () => {
+    test("shoud invoke show dialog", () => {
         let showDialog = jest.fn();
         let { container } = render(<TableView tableRows={rows} showDialog={showDialog} />);
         let tRows = screen.getAllByTestId("table-row");

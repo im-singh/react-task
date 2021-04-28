@@ -52,7 +52,8 @@ export default function TableContainer() {
     useEffect(() => {
         if (!isLoading && products.length > 0) {
             // let rows = createTableRows();
-            setTableRows(products);
+            // setTableRows(products);
+            handleSearch();
         }
     }, [products]);
     useEffect(() => {

@@ -88,7 +88,6 @@ export default function SearchTitle() {
     useEffect(() => {
         if (products.length > 0) {
             setOptions(products);
-            setValue("");
         }
     }, [products])
 

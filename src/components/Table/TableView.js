@@ -42,8 +42,6 @@ const useStyles = makeStyles({
     }
 });
 export default function TableView({ tableRows, showDialog }) {
-
-
     const classes = useStyles();
     return (
         <TableContainer component={Paper}>

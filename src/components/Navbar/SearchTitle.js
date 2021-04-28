@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function SearchTitle() {
     const classes = useStyles();
-    const [searchedValue, setValue] = useState();
+    const [searchedValue, setValue] = useState("");
     const [options, setOptions] = useState([]);
     const dispatch = useDispatch();
     const { products } = useSelector(({ productState }) => productState);
@@ -88,6 +88,7 @@ export default function SearchTitle() {
     useEffect(() => {
         if (products.length > 0) {
             setOptions(products);
+            setValue("");
         }
     }, [products])
 
@@ -97,6 +98,10 @@ export default function SearchTitle() {
             setValue(value.title);
             let product = products.filter(ele => ele.id === value.id)[0];
             dispatch(openDialog(product))
+        }
+        if (reason === 'clear') {
+            setValue("")
+            dispatch(searchValue(""));
         }
     };
     const handleInput = (event, value, reason) => {

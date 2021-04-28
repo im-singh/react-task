@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('md')]: {
             paddingLeft: '4rem'
         },
+        [theme.breakpoints.up('lg')]: {
+            paddingLeft: '25%'
+        },
     },
     form: {
         display: "flex",

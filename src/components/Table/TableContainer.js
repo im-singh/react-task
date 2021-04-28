@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
         width: '90%',
         margin: 'auto',
         marginTop: '100px',
-        cursor: "default",
+        maxWidth: "1000px",
         [theme.breakpoints.down("xs")]: {
             marginTop: '70px',
         }

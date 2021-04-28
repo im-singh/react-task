@@ -23,6 +23,7 @@ const StyledTableRow = withStyles((theme) => ({
         '&:nth-of-type(odd)': {
             backgroundColor: theme.palette.action.hover,
         },
+        cursor: "pointer",
     },
 }))(TableRow);
 const useStyles = makeStyles({
@@ -31,6 +32,13 @@ const useStyles = makeStyles({
     },
     indexColumn: {
         width: '10%',
+    },
+    headerRow: {
+        '& th': {
+            fontWeight: 500,
+            fontSize: '1rem',
+            letterSpacing: "1px"
+        }
     }
 });
 export default function TableView({ tableRows, showDialog }) {
@@ -41,18 +49,18 @@ export default function TableView({ tableRows, showDialog }) {
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="product-table">
                 <TableHead>
-                    <TableRow>
+                    <TableRow className={classes.headerRow}>
                         <StyledTableCell className={classes.indexColumn}>Sr.no</StyledTableCell>
-                        <StyledTableCell align="center">Title</StyledTableCell>
-                        <StyledTableCell align="center">Description</StyledTableCell>
+                        <StyledTableCell align="left">Title</StyledTableCell>
+                        <StyledTableCell align="left">Description</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {tableRows.map((row, idx) => (
                         <StyledTableRow key={idx} onClick={() => showDialog(row)} data-testid="table-row">
-                            <StyledTableCell align="center">{idx + 1}</StyledTableCell>
-                            <StyledTableCell align="center">{row.title}</StyledTableCell>
-                            <StyledTableCell align="center">{row.body}</StyledTableCell>
+                            <StyledTableCell align="left">{idx + 1}</StyledTableCell>
+                            <StyledTableCell align="left">{row.title}</StyledTableCell>
+                            <StyledTableCell align="left">{row.body}</StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>

@@ -12,12 +12,14 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         textAlign: 'left',
-        paddingLeft: '1rem',
+        // paddingLeft: '1rem',
         fontWeight: 500,
-        fontSize: '1.3rem',
-        [theme.breakpoints.down('xs')]: {
-            fontSize: '1rem',
-            paddingTop: '3px'
+        fontSize: '1rem',
+        paddingTop: "3px",
+        [theme.breakpoints.up(460)]: {
+            fontSize: '1.3rem',
+            paddingTop: "0px",
+
         },
         [theme.breakpoints.up('sm')]: {
             fontSize: '1.5rem',

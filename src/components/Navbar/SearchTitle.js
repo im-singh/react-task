@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
             minWidth: '40px',
             padding: '3px',
         },
+        [theme.breakpoints.down(450)]: {
+            minWidth: '32px'
+        }
     },
     inputField: {
         color: 'black'
@@ -59,6 +62,9 @@ const useStyles = makeStyles((theme) => ({
                 paddingTop: '0px'
             }
         },
+        [theme.breakpoints.down(450)]: {
+            width: '160px',
+        }
     },
     searchIcon: {
         padding: theme.spacing(0, 2),

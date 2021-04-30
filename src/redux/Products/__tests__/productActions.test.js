@@ -1,5 +1,5 @@
 import { fetchProductList, updateProduct, searchValue } from '../actions';
-import productTypes from '../types
+import productTypes from '../types';
 
 
 describe('fetchProductList action', () => {

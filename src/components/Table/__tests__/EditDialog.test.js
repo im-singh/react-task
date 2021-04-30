@@ -22,12 +22,8 @@ describe('<EditDialog/> compoent with isOpen=false', () => {
     })
 })
 describe("<EditDialog/> component with isOpen=true", () => {
-
-    let contDiv, Store;
     beforeEach(() => {
-        let { container, store } = render(<EditDialog />, { initialState: mockState });
-        contDiv = container;
-        Store = store;
+        let { container } = render(<EditDialog />, { initialState: mockState });
     })
     afterEach(() => cleanup())
     test("should render when isOpen true", () => {
@@ -68,23 +64,23 @@ describe("<EditDialog/> component with isOpen=true", () => {
 
 })
 describe("<EditDialog/> component with redux statea", () => {
-    test("click on cancelBtn should dispatch close dialog", () => {
+
+    let store;
+    beforeEach(() => {
         const mockStore = configureStore();
-        const store = mockStore(mockState);
+        store = mockStore(mockState);
         store.dispatch = jest.fn();
         render(<EditDialog />, { store });
+    })
+    test("click on cancelBtn should dispatch close dialog", () => {
         let cancelBtn = screen.getByRole('button', { name: /cancel/i });
-        fireEvent.click(cancelBtn,);
+        fireEvent.click(cancelBtn);
         expect(store.dispatch).toHaveBeenNthCalledWith(1, { type: 'CLOSE_DIALOG' })
     })
     test("click on submitBtn should dispatch update Product", () => {
-        const mockStore = configureStore();
-        const store = mockStore(mockState);
-        store.dispatch = jest.fn();
-        render(<EditDialog />, { store });
+        let tempObj = { id: 3, title: 'title changed', description: 'des changed' }
         let titleField = screen.getByLabelText("title");
         let desField = screen.getByLabelText("description");
-        let tempObj = { id: 3, title: 'title changed', description: 'des changed' }
         fireEvent.change(titleField, { target: { value: tempObj.title } });
         fireEvent.change(desField, { target: { value: tempObj.description } });
         let submitBtn = screen.getByRole('button', { name: /submit/i });

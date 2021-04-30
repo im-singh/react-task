@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import TableView from './TableView';
 import EditDialog from './EditDialog';
 import { openDialog } from '../../redux/Dialog/actions';
-import { Typography } from '@material-ui/core';
 import Error from './Error';
 
 const useStyles = makeStyles((theme) => ({

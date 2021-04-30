@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { withStyles, fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -9,6 +9,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import { openDialog } from '../../redux/Dialog/actions';
 import { searchValue } from '../../redux/Products/actions';
+
 const useStyles = makeStyles((theme) => ({
     formContainer: {
         display: 'flex',
@@ -78,6 +79,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
 }));
+
 export default function SearchTitle() {
     const classes = useStyles();
     const [searchedValue, setValue] = useState("");

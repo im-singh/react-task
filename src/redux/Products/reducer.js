@@ -9,7 +9,7 @@ export default function ProductReducer(state = productState, action) {
             return { ...state, isLoading: true, isError: false }
 
         case productTypes.FETCH_PRODUCTS_SUCCESS:
-            return { ...state, products: action.payload, isLoading: false }
+            return { ...state, products: action.payload, isError: false, isLoading: false }
         case productTypes.FETCH_PRODUCTS_FAIL:
             return { ...state, isError: true, error: action.err, isLoading: false }
 

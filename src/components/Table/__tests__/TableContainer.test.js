@@ -83,11 +83,14 @@ describe("<TableContainer/> component with redux state", () => {
             selectedProduct: null
         }
     }
-    test("click on table-row should dispatch open dialog", () => {
+    let store;
+    beforeEach(() => {
         const mockStore = configureStore();
-        const store = mockStore(mockState);
+        store = mockStore(mockState);
         store.dispatch = jest.fn();
         render(<TableContainer />, { store });
+    })
+    test("click on table-row should dispatch open dialog", () => {
         let tRows = screen.getAllByTestId("table-row");
         fireEvent.click(tRows[0]);
         expect(store.dispatch).toHaveBeenNthCalledWith(1, { type: 'OPEN_DIALOG', payload: mockState.productState.products[0] })

@@ -4,22 +4,23 @@ import SearchTitle from '../SearchTitle';
 import productTypes from '../../../redux/Products/types';
 
 describe("<SearchTitle/> component", () => {
-    test("should render correctly", () => {
+    let contDiv;
+    beforeEach(() => {
         let { container } = render(<SearchTitle />);
+        contDiv = container;
+    })
+    test("should render correctly", () => {
         expect(screen.getByTestId("search-title")).toBeInTheDocument();
     })
 
     test("should render input field", () => {
-        let { container } = render(<SearchTitle />);
         expect(screen.getByLabelText("Search Title")).toBeInTheDocument();
     })
     test("should render form", () => {
-        let { container } = render(<SearchTitle />);
-        let form = container.querySelector("input");
+        let form = contDiv.querySelector("input");
         expect(form).toBeInTheDocument();
     })
     test("should render search button", () => {
-        let { container } = render(<SearchTitle />);
         expect(screen.getByTestId("search-btn")).toBeInTheDocument();
     })
 })
@@ -51,13 +52,15 @@ describe("<SearchTitle/> component with redux state", () => {
             selectedProduct: null
         }
     }
-
-    test('click on submit should dispatch searchValue action', () => {
+    let store;
+    beforeEach(() => {
         const mockStore = configureStore();
-        const store = mockStore(mockState);
+        store = mockStore(mockState);
         store.dispatch = jest.fn();
+        render(<SearchTitle />, { store });
+    })
+    test('click on submit should dispatch searchValue action', () => {
         let tempValue = "skks"
-        let { container } = render(<SearchTitle />, { store });
         let inputField = screen.getByLabelText("Search Title");
         fireEvent.change(inputField, { target: { value: tempValue } })
         let btn = screen.getByTestId("search-btn");
@@ -65,11 +68,7 @@ describe("<SearchTitle/> component with redux state", () => {
         expect(store.dispatch).toHaveBeenNthCalledWith(1, { type: productTypes.UPDATE_SEARCH_VALUE, payload: tempValue })
     })
     test('click on any option and open dialog', () => {
-        const mockStore = configureStore();
-        const store = mockStore(mockState);
-        store.dispatch = jest.fn();
         let tempValue = "rerum"
-        let { container } = render(<SearchTitle />, { store });
         let inputField = screen.getByLabelText("Search Title");
         fireEvent.change(inputField, { target: { value: tempValue } })
         let liOption = screen.getByText("qui est esse rerum");

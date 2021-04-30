@@ -7,7 +7,6 @@ function App() {
       <Switch>
         <Route path="/" component={Home} />
       </Switch>
-
     </div>
   );
 }
